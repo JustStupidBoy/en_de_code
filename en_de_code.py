@@ -1,4 +1,10 @@
 from base64 import *
+import msvcrt
+
+def wait_for_any_key():
+    print_gradient("Appuyez sur une touche pour continuer...")
+    msvcrt.getch()  # Attend un appui sur une touche
+    main()
 
 def print_gradient(text):
     # Dégradé du violet clair vers plus foncé (TrueColor: 24-bit)
@@ -39,18 +45,21 @@ def encoder16(x):
     print_gradient("--------------------------------------")
     print_gradient(encoded)
     print_gradient("--------------------------------------")
+    wait_for_any_key()
 
 def encoder32(x):
     encoded = b32encode(x.encode()).decode()
     print_gradient("--------------------------------------")
     print_gradient(encoded)
     print_gradient("--------------------------------------")
+    wait_for_any_key()
 
 def encoder64(x):
     encoded = b64encode(x.encode()).decode()
     print_gradient("--------------------------------------")
     print_gradient(encoded)
     print_gradient("--------------------------------------")
+    wait_for_any_key()
 
 def decoder16(x):
     try:
@@ -58,8 +67,10 @@ def decoder16(x):
         print_gradient("--------------------------------------")
         print_gradient(decoded)
         print_gradient("--------------------------------------")
+        wait_for_any_key()
     except Exception as e:
         print_gradient(f"Erreur de décodage base16 : {e}")
+        wait_for_any_key()
 
 def decoder32(x):
     try:
@@ -67,8 +78,10 @@ def decoder32(x):
         print_gradient("--------------------------------------")
         print_gradient(decoded)
         print_gradient("--------------------------------------")
+        wait_for_any_key()
     except Exception as e:
         print_gradient(f"Erreur de décodage base32 : {e}")
+        wait_for_any_key()
 
 def decoder64(x):
     try:
@@ -76,8 +89,11 @@ def decoder64(x):
         print_gradient("--------------------------------------")
         print_gradient(decoded)
         print_gradient("--------------------------------------")
+        wait_for_any_key()
+
     except Exception as e:
         print_gradient(f"Erreur de décodage base64 : {e}")
+        wait_for_any_key()
 
 def encoder():
     while True:
