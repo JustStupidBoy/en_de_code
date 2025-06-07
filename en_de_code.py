@@ -1,15 +1,14 @@
 from base64 import *
 import msvcrt
 
-def wait_for_any_key():
+def wait_for_any_key(): #retour menu
     print_gradient("Appuyez sur une touche pour continuer...")
-    msvcrt.getch()  # Attend un appui sur une touche
+    msvcrt.getch()
     main()
 
-def print_gradient(text):
-    # Dégradé du violet clair vers plus foncé (TrueColor: 24-bit)
-    start_rgb = (230, 200, 255)  # Violet clair
-    end_rgb = (100, 0, 150)      # Violet foncé
+def print_gradient(text): #colorier texte
+    start_rgb = (230, 200, 255)
+    end_rgb = (100, 0, 150)
 
     length = len(text)
     for i, char in enumerate(text):
@@ -19,6 +18,7 @@ def print_gradient(text):
         print(f"\033[38;2;{r};{g};{b}m{char}\033[0m", end='')
     print()
 
+#menu
 
 def main():
     print_gradient("--------------------------------------")
@@ -39,6 +39,8 @@ def main():
                 print_gradient("Veuillez entrer un 1 ou 2.")
         except ValueError:
             print_gradient("Veuillez entrer un 1 ou 2.")
+
+#result
 
 def encoder16(x):
     encoded = b16encode(x.encode()).decode()
@@ -95,6 +97,8 @@ def decoder64(x):
         print_gradient(f"Erreur de décodage base64 : {e}")
         wait_for_any_key()
 
+#choose message to decode/encode
+
 def encoder():
     while True:
         print_gradient("--------------------------------------")
@@ -135,6 +139,8 @@ def decoder():
     print_gradient("--------------------------------------")
     choice_decoder(x)
 
+#choice base 16 / 32 / 64
+
 def choice_encoder(x):
     while True:
         try:
@@ -172,6 +178,8 @@ def choice_decoder(x):
                 print_gradient("Veuillez entrer un nombre entre 1 et 3.")
         except ValueError:
             print_gradient("Erreur : entrez un nombre entier (1, 2 ou 3).")
+
+#lancer
 
 if __name__ == "__main__":
     main()
